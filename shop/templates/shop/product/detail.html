@@ -1,0 +1,20 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ product.name }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ product.name }}</h2>
+    <div class="product-detail">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        {% endif %}
+        <p><strong>Категория:</strong> <a href="{{ product.category.get_absolute_url }}">{{ product.category.name }}</a></p>
+        <p><strong>Цена:</strong> {{ product.price }} руб.</p>
+        <p><strong>Описание:</strong> {{ product.description|linebreaks }}</p>
+        <p><strong>В наличии:</strong> {% if product.available %}Да{% else %}Нет{% endif %}</p>
+        <!-- Позже добавим кнопку "Добавить в корзину" и отзывы -->
+    </div>
+{% endblock %}
